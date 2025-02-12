@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PSTouchExpress.Pages.MainPage"
+             xmlns:pages="clr-namespace:PSTouchExpress.Pages"
+             xmlns:views="clr-namespace:PSTouchExpress.Views"
+             xmlns:app="clr-namespace:PSTouchExpress.Resources.Styles"
+             xmlns:behaviors="clr-namespace:NNN.Core.Presentation.MAUI.Behaviors;assembly=NNN.Core.Presentation.MAUI"
+             xmlns:converters="clr-namespace:NNN.Core.Presentation.MAUI.Converters;assembly=NNN.Core.Presentation.MAUI"
+             BackgroundColor="White">
+    <!--xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.Markup.MauiCompat;assembly=Xamarin.CommunityToolkit.Markup.MauiCompat"
+             xmlns:telerik="clr-namespace:Telerik.Maui.Controls;assembly=Telerik.Maui.Controls"
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.Maui.Controls.Compatibility"             
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.Maui.Controls.Compatibility"-->
+    <ContentPage.Resources>
+        <converters:ContentPresenterConverter x:Key="ContentPresenterConverter"/>
+    </ContentPage.Resources>
+    
+        <Grid RowDefinitions="{Binding AppBarRows}" >
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding TagOnContentPageCommand}" />
+            </Grid.GestureRecognizers>
+            <Grid.Resources>
+
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <FlexLayout Grid.Row="1">
+                <Grid>
+                    <Grid.RowDefinitions />
+                <Grid.ColumnDefinitions >                    
+                    <ColumnDefinition Width="*" />
+                    <!--<ColumnDefinition Width="10" />-->
+                </Grid.ColumnDefinitions>
+                <!--<StackLayout Grid.Row="0" x:Name="ContentPresenterContainer" BackgroundColor="Red">
+                            <ContentPresenter  Grid.Row="0" x:Name="MainPageContentPresenter" 
+                                Content="{Binding MainPageContentPresenter, Mode=TwoWay, 
+                                Converter={StaticResource ContentPresenterConverter}, 
+                                ConverterParameter={x:Reference ContentPresenterContainer}}" />
+                        </StackLayout>-->
+                <!--<ContentPresenter  Grid.Row="0" x:Name="MainPageContentPresenter"  
+                                    Content="{Binding MainPageContentPresenter, Mode=TwoWay, 
+                                    Converter={StaticResource ContentPresenterConverter}, 
+                                    ConverterParameter={x:Reference MainPageContentPresenter}}" />-->
+                <ContentPresenter  Grid.Row="0" x:Name="MainPageContentPresenter" 
+                                    Content="{Binding MainPageContentPresenter, Mode=TwoWay}"/>
+                <!--<Label Text="{Binding FlyOutMenuMarginTop}" />-->
+                <ActivityIndicator IsRunning="{Binding IsActivityIndicatorBusy}" Grid.Row="0" 
+                                    Color="{DynamicResource DefaultBlueColor}" WidthRequest="150" 
+                                    HorizontalOptions="Center" />
+            </Grid>
+
+            </FlexLayout>
+
+            <views:AppBar x:Name="AppBar" Grid.Row="0" />
+
+            <views:NavigationBar x:Name="NavigationBar" Grid.Row="2" />
+
+            <views:FlyOutMenu x:Name="FlyOutMenuView" Grid.Row="1" />
+                
+        </Grid>
+
+</ContentPage>
+    

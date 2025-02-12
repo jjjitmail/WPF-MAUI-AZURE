@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PSTouchExpress.Pages.DataPage"
+            xmlns:views="clr-namespace:PSTouchExpress.Views"             
+            xmlns:behaviors="clr-namespace:NNN.Core.Presentation.MAUI.Behaviors;assembly=NNN.Core.Presentation.MAUI"
+             xmlns:converters="clr-namespace:NNN.Core.Presentation.MAUI.Converters;assembly=NNN.Core.Presentation.MAUI"
+             xmlns:telerik="clr-namespace:Telerik.Maui.Controls;assembly=Telerik.Maui.Controls"
+             BackgroundColor="White">
+    <!--xmlns:telerik="clr-namespace:Telerik.Maui.Controls;assembly=Telerik.Maui.Controls"            
+             xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.Maui.Controls.Compatibility"             
+             xmlns:telerikPrimitives="clr-namespace:Telerik.XamarinForms.Primitives;assembly=Telerik.Maui.Controls.Compatibility"-->
+
+            <FlexLayout>
+                <Grid>
+                    <Grid.Resources>
+                        <ResourceDictionary>
+                            <converters:TabHeaderTextColor x:Key="TabHeaderTextColor" />
+                            <converters:TabSelectedLineColor x:Key="TabSelectedLineColor" />
+                            <ControlTemplate x:Key="HeaderItemTemplate">
+                                <Grid BackgroundColor="Transparent" HeightRequest="50">
+                                    <StackLayout Orientation="Horizontal" Margin="10, 5, 10, 8"  >
+                                        <Label Text="{TemplateBinding Text}"
+                                       FontSize="15" FontFamily="SegMDL2"
+                                       HorizontalTextAlignment="Center"
+                                       TextColor="{TemplateBinding IsSelected, Converter={StaticResource TabHeaderTextColor} }"
+                                       VerticalOptions="Center">
+                                        </Label>
+                                    </StackLayout>
+                                    <BoxView 
+                                BackgroundColor="{TemplateBinding BorderColor}"
+                                VerticalOptions="End" 
+                                HeightRequest="5"/>
+                                </Grid>
+                            </ControlTemplate>
+                            <Style x:Key="HeaderItemStyle"  TargetType="telerik:TabViewHeaderItem">
+                                <Setter Property="ContentPadding" Value="10" />
+                                <Setter Property="Shadow" Value="5,5,5,5" />
+                                <Setter Property="TextColor" Value="Black" />
+                                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                                <Setter Property="VerticalTextAlignment" Value="Center" />
+                                <Setter Property="BorderColor" Value="Transparent" />
+                                <Setter Property="VisualStateManager.VisualStateGroups">
+                                    <VisualStateGroupList>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Normal" />
+                                            <VisualState Name="Disabled">
+                                                <VisualState.Setters>
+                                                    <Setter Property="TextColor" Value="{DynamicResource DarkGrayColor}" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BorderColor" Value="{DynamicResource DefaultBlueColor}" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateGroupList>
+                                </Setter>
+                            </Style>
+                        </ResourceDictionary>
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+            <!--<views:Tab_DataView Grid.Row="0" />-->
+            <telerik:RadTabView x:Name="PlotDataTabView1" Grid.Row="0" 
+                HeaderItemStyle="{StaticResource TelerikTabHeaderItemStyle}"
+                                  >
+
+                        <telerik:TabViewItem HeaderText="&#xE9D9; DATA" >
+                            <telerik:RadButton Text="Add Tab"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    Clicked="OnAddTabClicked" />
+                        </telerik:TabViewItem>
+
+                        <telerik:TabViewItem HeaderText="&#xE9D9; LSV GOLD" >
+
+                        </telerik:TabViewItem>
+                        <telerik:TabViewItem HeaderText="&#xE9D9; EIS AG" >
+                            <views:Tab_DataView />
+                        </telerik:TabViewItem>
+
+                    </telerik:RadTabView>
+
+                    <!--<StackLayout  Grid.Row="0" HorizontalOptions="End">
+                        <Button Text="+" HeightRequest="40" WidthRequest="40" TextColor="Black"
+                                CornerRadius="20" FontSize="Large" Margin="0,2,5,0"
+                                Clicked="AddTab" 
+                                x:Name="AddTabBtn" BackgroundColor="#0cc9b0" >
+
+                            <Button.Shadow>
+                                <Shadow Brush="Black"
+					        Offset="{OnPlatform iOS='0,10', Android='1,10', Default='1,5'}"
+					        Radius="{OnPlatform iOS='3', Android='7', Default='7'}"
+					        Opacity="{OnPlatform iOS='0.2', Android='0.3', Default='0.3'}" />
+                            </Button.Shadow>
+
+                        </Button>
+                    </StackLayout>-->
+
+                </Grid>
+            </FlexLayout>
+
+    
+    
+   
+</ContentView>
+
+<!--<StackLayout>
+        <views:DataPage_ContentView x:Name="DataPage_ContentView" />
+    </StackLayout>-->
+    

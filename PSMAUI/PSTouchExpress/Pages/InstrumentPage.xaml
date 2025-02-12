@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PSTouchExpress.Pages.InstrumentPage"
+             xmlns:pages="clr-namespace:PSTouchExpress.Pages"
+             xmlns:views="clr-namespace:PSTouchExpress.Views" BindingContextChanged="ContentView_BindingContextChanged"
+             xmlns:converters="clr-namespace:NNN.Core.Presentation.MAUI.Converters;assembly=NNN.Core.Presentation.MAUI"
+             xmlns:uc="clr-namespace:NNN.Core.Presentation.MAUI.UserControls;assembly=NNN.Core.Presentation.MAUI"
+             xmlns:telerik="clr-namespace:Telerik.Maui.Controls;assembly=Telerik.Maui.Controls"
+             BackgroundColor="White">
+    <FlexLayout>
+        <Grid>            
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <converters:TabHeaderTextColor x:Key="TabHeaderTextColor" />
+                    <converters:TabSelectedLineColor x:Key="TabSelectedLineColor" />
+                    <ControlTemplate x:Key="HeaderItemTemplate">
+                        <Grid BackgroundColor="Transparent" HeightRequest="50">
+                            <StackLayout Orientation="Horizontal" Margin="10, 5, 10, 8"  >
+                                <Label Text="{TemplateBinding Text}"
+                                       FontSize="15" FontFamily="SegMDL2"
+                                       HorizontalTextAlignment="Center"
+                                       TextColor="{TemplateBinding IsSelected, Converter={StaticResource TabHeaderTextColor} }"
+                                       VerticalOptions="Center">
+                                </Label>
+                            </StackLayout>
+                            <BoxView 
+                                BackgroundColor="{TemplateBinding BorderColor}"
+                                VerticalOptions="End" 
+                                HeightRequest="5"/>
+                        </Grid>
+                    </ControlTemplate>
+                    <Style x:Key="HeaderItemStyle"  TargetType="telerik:TabViewHeaderItem">
+                        <Setter Property="ContentPadding" Value="10" />
+                        <Setter Property="TextColor" Value="Black" />
+                        <Setter Property="HorizontalTextAlignment" Value="Center" />
+                        <Setter Property="VerticalTextAlignment" Value="Center" />
+                        <Setter Property="BorderColor" Value="Transparent" />
+                        <Setter Property="VisualStateManager.VisualStateGroups">
+                            <VisualStateGroupList>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal" />
+                                    <VisualState Name="Disabled">
+                                        <VisualState.Setters>
+                                            <Setter Property="TextColor" Value="{DynamicResource DarkGrayColor}" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="TextColor" Value="{DynamicResource DefaultBlueColor}" />
+                                            <Setter Property="BorderColor" Value="{DynamicResource DefaultBlueColor}" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateGroupList>
+                        </Setter>
+                    </Style>
+                </ResourceDictionary>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <telerik:RadTabView x:Name="tabView" HeaderItemStyle="{StaticResource TelerikTabHeaderItemStyle}">
+                <telerik:TabViewItem HeaderText="&#xE90F; METHOD">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        
+                        <telerik:RadTabView Grid.Row="0" Margin="0,50,0,0"
+                                 HeaderItemStyle="{StaticResource TelerikTabHeaderItemStyle}" >
+                            <telerik:TabViewItem HeaderText="MEASUREMENT" >
+                                <StackLayout>
+                                    <ScrollView Grid.Row="0" Margin="0,5,0,0" VerticalOptions="FillAndExpand" >
+                                        <StackLayout>
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding TagOnContentPageCommand}" />
+                                            </StackLayout.GestureRecognizers>
+                                            <ContentView x:Name="IntrumentContent" />  <!--Content="{Binding MethodContentView, Mode=TwoWay}" />-->
+                                        </StackLayout>
+                                    </ScrollView>
+
+                                    <uc:ValidationSummary x:Name="validationSummary" BindingContext="{Binding ParameterGroup.ValidationErrors, Mode=OneWay}" />
+                                </StackLayout>
+                                
+                            </telerik:TabViewItem>
+                            <telerik:TabViewItem HeaderText="POST PROCESSING" >
+
+                            </telerik:TabViewItem>
+                        </telerik:RadTabView>
+
+                        <views:TechniqueView Grid.Row="0" />
+                    </Grid>
+                </telerik:TabViewItem>
+                <telerik:TabViewItem HeaderText="&#xE90F; SCRIPT">
+                    
+                </telerik:TabViewItem>
+                <telerik:TabViewItem HeaderText="&#xE90F; MANUAL">
+                    
+                </telerik:TabViewItem>
+            </telerik:RadTabView>
+           
+
+        </Grid>
+    </FlexLayout>
+
+</ContentView>

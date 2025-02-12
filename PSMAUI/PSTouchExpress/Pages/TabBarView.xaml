@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PSTouchExpress.Pages.TabBarView"
+             xmlns:views="clr-namespace:PSTouchExpress.Views"
+             xmlns:PSControls="clr-namespace:PSTouchExpress.Controls"
+             >
+    <ContentView.Content>
+        <FlexLayout >
+            <FlexLayout.Shadow>
+                <Shadow Brush="Black"
+								Offset="{OnPlatform iOS='-1,-10', Android='-1,-10', Default='-1,-8'}"
+								Radius="{OnPlatform Android='20', iOS='3',  Default='10'}"
+								Opacity="{OnPlatform Android='0.8', iOS='0.2', Default='0.2'}" />
+            </FlexLayout.Shadow>
+            <Grid BackgroundColor="{DynamicResource DefaultBlueColor}"
+                    HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".33*" />
+                    <ColumnDefinition Width=".34*" />
+                    <ColumnDefinition Width=".33*" />
+                </Grid.ColumnDefinitions>
+
+                <!--<ContentView Grid.Column="0" x:Name="ConnectionLabel" >
+                    <View.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </View.GestureRecognizers>
+                    <Label Style="{StaticResource NavigationIcon}" Text="{Binding ConnectionsIcon}" />
+                    <PSControls:PSLabel Style="{StaticResource NavigationTextLabel}" Text="{Binding ConnectionsText}" />
+                </ContentView>-->
+                <StackLayout Grid.Column="0" x:Name="ConnectionLabel" >
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </StackLayout.GestureRecognizers>
+
+                    <Image
+                        Source="{StaticResource ConnectionsIcon}" 
+                        HorizontalOptions="Center"
+                        Margin="0"
+                        HeightRequest="30"
+                        WidthRequest="30"/>
+
+                    <Label Style="{StaticResource NavigationTextLabel}" Text="{Binding ConnectionsText}" />
+                    
+                    <!--<Label Style="{StaticResource NavigationIcon}" Text="{Binding ConnectionsIcon}" />-->
+                    <!--<PSControls:PSLabel Style="{StaticResource NavigationTextLabel}" Text="{Binding ConnectionsText}" />-->
+                </StackLayout>
+
+                <StackLayout Grid.Column="1">
+                    <Label Style="{StaticResource NavigationIcon}" Text="{Binding InstrumentIcon}" />
+                    <Label Style="{StaticResource NavigationTextLabel}" Text="{Binding InstrumentText}" />
+                </StackLayout>
+
+                <StackLayout Grid.Column="2">
+                   
+                    <!--<Label Style="{StaticResource NavigationIcon}" Text="{Binding DataIcon}" />
+                    <Label Style="{StaticResource NavigationTextLabel}" Text="{Binding DataText}" />-->
+                </StackLayout>
+
+            </Grid>
+
+        </FlexLayout>
+        </ContentView.Content>
+</ContentView>
