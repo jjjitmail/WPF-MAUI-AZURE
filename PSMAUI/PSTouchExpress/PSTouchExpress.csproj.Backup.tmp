@@ -1,0 +1,266 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) and '$(MSBuildRuntimeType)' == 'Full'">$(TargetFrameworks);net6.0-windows10.0.19041</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>PSTouchExpress</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+    
+		<!-- Display name -->
+		<ApplicationTitle>PSTouchExpress</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.pstouchexpress</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<!-- Required for C# Hot Reload -->
+		<UseInterpreter Condition="'$(Configuration)' == 'Debug'">True</UseInterpreter>
+
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</TargetPlatformMinVersion>
+		<CodesignKey>Apple Development: Jun Tam (9RDRVJRMCR)</CodesignKey>
+		<CodesignProvision>VS: WildCard Development</CodesignProvision>
+		<RestoreAdditionalProjectSources>../ExternalPackages/</RestoreAdditionalProjectSources>
+		<ProvisioningType>manual</ProvisioningType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
+		 <!--Required - WinUI does not yet have buildTransitive for everything--> 
+		<!--<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.3" />-->
+		<PackageReference Include="Microsoft.Graphics.Win2D" Version="1.0.3.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidResource Remove="Attributes\**" />
+	  <AndroidResource Remove="Behaviors\**" />
+	  <AndroidResource Remove="Converters\**" />
+	  <AndroidResource Remove="Effects\**" />
+	  <AndroidResource Remove="Enum\**" />
+	  <AndroidResource Remove="Graphics\**" />
+	  <AndroidResource Remove="Helpers\**" />
+	  <AndroidResource Remove="Interfaces\**" />
+	  <AndroidResource Remove="Triggers\**" />
+	  <AndroidResource Remove="Types\**" />
+	  <AndroidResource Remove="UserControls\**" />
+	  <Compile Remove="Attributes\**" />
+	  <Compile Remove="Behaviors\**" />
+	  <Compile Remove="Converters\**" />
+	  <Compile Remove="Effects\**" />
+	  <Compile Remove="Enum\**" />
+	  <Compile Remove="Graphics\**" />
+	  <Compile Remove="Helpers\**" />
+	  <Compile Remove="Interfaces\**" />
+	  <Compile Remove="Triggers\**" />
+	  <Compile Remove="Types\**" />
+	  <Compile Remove="UserControls\**" />
+	  <EmbeddedResource Remove="Attributes\**" />
+	  <EmbeddedResource Remove="Behaviors\**" />
+	  <EmbeddedResource Remove="Converters\**" />
+	  <EmbeddedResource Remove="Effects\**" />
+	  <EmbeddedResource Remove="Enum\**" />
+	  <EmbeddedResource Remove="Graphics\**" />
+	  <EmbeddedResource Remove="Helpers\**" />
+	  <EmbeddedResource Remove="Interfaces\**" />
+	  <EmbeddedResource Remove="Triggers\**" />
+	  <EmbeddedResource Remove="Types\**" />
+	  <EmbeddedResource Remove="UserControls\**" />
+	  <MauiCss Remove="Attributes\**" />
+	  <MauiCss Remove="Behaviors\**" />
+	  <MauiCss Remove="Converters\**" />
+	  <MauiCss Remove="Effects\**" />
+	  <MauiCss Remove="Enum\**" />
+	  <MauiCss Remove="Graphics\**" />
+	  <MauiCss Remove="Helpers\**" />
+	  <MauiCss Remove="Interfaces\**" />
+	  <MauiCss Remove="Triggers\**" />
+	  <MauiCss Remove="Types\**" />
+	  <MauiCss Remove="UserControls\**" />
+	  <MauiXaml Remove="Attributes\**" />
+	  <MauiXaml Remove="Behaviors\**" />
+	  <MauiXaml Remove="Converters\**" />
+	  <MauiXaml Remove="Effects\**" />
+	  <MauiXaml Remove="Enum\**" />
+	  <MauiXaml Remove="Graphics\**" />
+	  <MauiXaml Remove="Helpers\**" />
+	  <MauiXaml Remove="Interfaces\**" />
+	  <MauiXaml Remove="Triggers\**" />
+	  <MauiXaml Remove="Types\**" />
+	  <MauiXaml Remove="UserControls\**" />
+	  <None Remove="Attributes\**" />
+	  <None Remove="Behaviors\**" />
+	  <None Remove="Converters\**" />
+	  <None Remove="Effects\**" />
+	  <None Remove="Enum\**" />
+	  <None Remove="Graphics\**" />
+	  <None Remove="Helpers\**" />
+	  <None Remove="Interfaces\**" />
+	  <None Remove="Triggers\**" />
+	  <None Remove="Types\**" />
+	  <None Remove="UserControls\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Controls\PSButton.cs" />
+	  <Compile Remove="Controls\PSCollectionView.cs" />
+	  <Compile Remove="Controls\PSFrame.cs" />
+	  <Compile Remove="Controls\PSLabel.cs" />
+	  <Compile Remove="Controls\PSStackLayout.cs" />
+	  <Compile Remove="Models\BasePageModel.cs" />
+	  <Compile Remove="Models\ConnectionItem.cs" />
+	  <Compile Remove="Models\ConnectionsPageModel.cs" />
+	  <Compile Remove="Models\DataPageModel.cs" />
+	  <Compile Remove="Models\FlyOutMenuItem.cs" />
+	  <Compile Remove="Models\InstrumentPageModel.cs" />
+	  <Compile Remove="Models\NotifyPropertyChangedBase.cs" />
+	  <Compile Remove="Models\PlotItem.cs" />
+	  <Compile Remove="Models\Range.cs" />
+	  <Compile Remove="Pages\TabBarView.xaml.cs" />
+	  <Compile Remove="SVG\Icon.cs" />
+	  <Compile Remove="Views\Data\DataPage_ContentView.xaml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\NNN.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Remove="Pages\TabBarView.xaml" />
+	  <MauiXaml Remove="Resources\Styles\DefaultTheme2.xaml" />
+	  <MauiXaml Remove="Views\Data\DataPage_ContentView.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\NNN.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\ConnectionsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\DataPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\InstrumentPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\MainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\ShellPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\DefaultTheme.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Connections\ConnectionsListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Data\Tab_DataView.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Data\PlotDataView.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\FlyOutMenu.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AppBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Instrument\ComboBoxView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Instrument\MethodEditorView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Instrument\RangeView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Instrument\TechniqueView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\NavigationBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PSButton.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Controls\" />
+	  <Folder Include="Services\" />
+	  <Folder Include="SVG\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="NNN.Core.Instruments.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
+	  <PackageReference Include="Telerik.UI.for.Maui" Version="1.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\NNN.Core.Presentation.MAUI\NNN.Core.Presentation.MAUI.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\Data\Tab_DataView.xaml.cs">
+	    <DependentUpon>Tab_DataView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Data\PlotDataView.xaml.cs">
+	    <DependentUpon>PlotDataView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\FlyOutMenu.xaml.cs">
+	    <DependentUpon>FlyOutMenu.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
+	  <PackageReference Include="Microsoft.Maui.Controls.Compatibility.Android.FormsViewGroup">
+	    <Version>6.0.100-preview.5.794</Version>
+	  </PackageReference>
+	</ItemGroup>
+
+	<PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">
+		<OutputType>WinExe</OutputType>
+		<RuntimeIdentifier>win10-x64</RuntimeIdentifier>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-android|AnyCPU'">
+	  <CodesignKey>Apple Development: Jun Tam %289RDRVJRMCR%29</CodesignKey>
+	  <CodesignProvision>VS: WildCard Development</CodesignProvision>
+	</PropertyGroup>
+
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionPSTouchExpressHideInfoBar="True" /></VisualStudio></ProjectExtensions>
+
+	
+</Project>

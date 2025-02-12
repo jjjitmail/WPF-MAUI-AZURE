@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64;win-x64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Capabilities\Capabilities.json" />
+    <None Remove="Capabilities\CapabilitiesSchema.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Capabilities\Capabilities.json" />
+    <EmbeddedResource Include="Capabilities\CapabilitiesSchema.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Nito.AsyncEx" Version="5.1.2" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="6.0.0" />
+    <PackageReference Include="System.IO.Ports" Version="6.0.0" />
+    <PackageReference Include="System.Linq.Async" Version="5.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NNN.Core.Common\NNN.Core.Common.csproj" />
+    <ProjectReference Include="..\NNN.Core.FTDI\NNN.Core.FTDI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\IInstrument.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IInstrument.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Methods\Method.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Method.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\TechniqueId.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TechniqueId.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\IInstrument.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>IInstrument.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Methods\Method.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Method.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\TechniqueId.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TechniqueId.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+
+</Project>
