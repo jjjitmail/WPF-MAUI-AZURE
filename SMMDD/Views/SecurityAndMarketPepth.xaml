@@ -1,0 +1,120 @@
+﻿<Page x:Class="SMMDD.Views.SecurityAndMarketPepth"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:sys="clr-namespace:System;assembly=System"
+      xmlns:local="clr-namespace:SMMDD"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800" 
+      Title="SecurityAndMarketPepth">
+
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="800" Height="560" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".2*" />
+            <ColumnDefinition Width=".8*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" VerticalAlignment="Stretch" Margin="10">
+            <Grid Height="Auto" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="490"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" VerticalAlignment="Stretch" >
+                    <ScrollViewer Height="490">
+                        <ListBox SelectionMode="Single" SelectedItem="{Binding SelectedSecurity}"                                 
+                                    ItemsSource="{Binding SecurityList, Mode=TwoWay}"
+                                    VerticalAlignment="Stretch" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding SecuritySelectionChangedCommand}" CommandParameter="{Binding ID}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding ID}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </ScrollViewer>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <Button Content="Add" Command="{Binding AddSymbolCommand}"/>
+                    <Button Content="Save" Command="{Binding SaveCommand}"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="0,10,0,10">
+            <StackPanel Height="auto">
+                <TextBlock Foreground="Red" Text="{Binding ResultMessage, Mode=TwoWay}" />
+            </StackPanel>
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="0,10,0,10">
+                        <StackPanel Margin="0,5,0,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40" />
+                                    <ColumnDefinition  Width="*" />
+                                    <ColumnDefinition  Width="30" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Type" Grid.Column="0" Margin="5,0,0,0"/>
+                                <ComboBox Grid.Column="1" Height="23" 
+                              SelectedIndex="{Binding SelectedSymbolType, Mode=TwoWay}"
+                              Margin="0,0,2,0" >
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding ComboBoxSelectionChangedCommand}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <ComboBoxItem Content="FX Spot" />
+                                    <ComboBoxItem Content="FX Forward" />
+                                </ComboBox>
+                                <DatePicker x:Name="datePicker" Grid.Column="2" 
+                                DisplayDateStart="{Binding DisplayDateStart}"
+                                IsEnabled="{Binding IsDatePickerEnabled, Mode=TwoWay}"
+                                VerticalAlignment="Center" SelectedDateFormat="Long"
+                                SelectedDate="{Binding SelectedDate, Mode=TwoWay}"/>
+                            </Grid>
+
+                        </StackPanel>
+                        <StackPanel  Margin="0,5,0,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40" />
+                                    <ColumnDefinition  Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="ID" Grid.Column="0" Margin="5,0,0,0" />
+                                <TextBox Grid.Column="1" Text="{Binding SymbolID, Mode=TwoWay}" MaxLength="7" />
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Margin="10" >
+                        <DataGrid ItemsSource="{Binding MarketDepthGrids, Mode=TwoWay}" 
+                      AutoGenerateColumns="False" MaxWidth="425" Visibility="{Binding DatagridVisibility}" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Source" Width="65" Binding="{Binding Source_Bid}"/>
+                                <DataGridTextColumn Header="Qty" Width="65" Binding="{Binding Qty_Bid}"/>
+                                <DataGridTextColumn Header="Price" Width="65" Binding="{Binding Price_Bid}"/>
+                                <DataGridTextColumn Header="" Width="1" />
+                                <DataGridTextColumn Header="Price" Width="65" Binding="{Binding Price_Ask}"/>
+                                <DataGridTextColumn Header="Qty" Width="65" Binding="{Binding Qty_Ask}"/>
+                                <DataGridTextColumn Header="Source" Width="65" Binding="{Binding Source_Ask}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+        
+        
+        
+    </Grid>
+</Page>
