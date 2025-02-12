@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Graphics="clr-namespace:NNN.Core.Presentation.MAUI.Graphics"
+             x:Class="NNN.Core.Presentation.MAUI.UserControls.CheckBoxLabelEntry">
+    <Grid>
+        <Grid.Resources>
+            <Graphics:PSUnderline x:Key="PSUnderline" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".10*" />
+            <ColumnDefinition Width=".35*" />
+            <ColumnDefinition Width=".35*" />
+            <ColumnDefinition Width=".10*" />
+        </Grid.ColumnDefinitions>
+        <CheckBox x:Name="CheckBox" Grid.Column="0">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="Color" Value="{StaticResource DarkGrayColor7E}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="IsChecked">
+                        <VisualState.Setters>
+                            <Setter Property="Color" Value="{StaticResource DefaultBlueColor}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </CheckBox>
+        <Label x:Name="title" Grid.Column="1" Margin="10,0,0,0" VerticalTextAlignment="Center" />
+        
+        <StackLayout Grid.Column="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Entry x:Name="entry" Grid.Row="0" FontSize="16"
+                       Focused="Entry_Focused" 
+                       Unfocused="Entry_Unfocused" />
+                <GraphicsView x:Name="PSUnderline" 
+                      Drawable="{StaticResource PSUnderline}" Margin="2,0,0,5"
+                      HeightRequest="5"  HorizontalOptions="FillAndExpand" IsVisible="true" 
+                      VerticalOptions="End" Grid.Row="0" />
+            </Grid>
+        </StackLayout>
+        <Label x:Name="UnitLbl" Grid.Column="3" Margin="10,0,0,0" VerticalTextAlignment="Center" />
+    </Grid>
+</ContentView>
