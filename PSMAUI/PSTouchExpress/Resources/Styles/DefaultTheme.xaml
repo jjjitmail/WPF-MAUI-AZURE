@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                    xmlns:app="clr-namespace:PSTouchExpress.Resources.Styles"
+                    x:Class="PSTouchExpress.Resources.Styles.DefaultTheme"
+                    xmlns:telerik="clr-namespace:Telerik.Maui.Controls;assembly=Telerik.Maui.Controls"
+                    xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls">
+    <!--xmlns:telerik="clr-namespace:Telerik.Maui.Controls;assembly=Telerik.Maui.Controls"-->
+    <Color x:Key="DefaultBlueColor">#0090C9</Color>
+    <Color x:Key="DefaultLightBlueColor">#D6EAEF</Color>
+    <Color x:Key="SelectedBlueColor">#2E4373</Color>
+    <Color x:Key="WhiteTextColor">White</Color>
+    <Color x:Key="BodyBGColor">White</Color>
+    <Color x:Key="FlyOutMenuBgColor">#f2f5f3</Color>
+    <Color x:Key="DefaultNavigationTextColor">#D6EAEF</Color>
+    <Color x:Key="DefaultTextColor">#000000</Color>
+    <Color x:Key="SeparatorColor">#DBDBDB</Color>
+    <Color x:Key="DarkGrayColor">DarkGray</Color>
+    <Color x:Key="DarkGrayColor7E">#7E7E7E</Color>
+
+    
+
+    <FontImageSource
+        x:Key="ConnectionsIcon"
+        FontFamily="SegMDL2"
+        Glyph="{x:Static app:IconFontSegMDL2.Connections}"
+        Color="{StaticResource WhiteTextColor}"
+        Size="16"/>
+
+    <Style x:Key="TelerikTabHeaderItemStyle"  TargetType="telerik:TabViewHeaderItem">
+        <Setter Property="ContentPadding" Value="20" />
+        <Setter Property="FontFamily" Value="SegMDL2" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal" />
+                    <VisualState Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{DynamicResource DarkGrayColor}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{DynamicResource DefaultBlueColor}" />
+                            <Setter Property="BorderColor" Value="{DynamicResource DefaultBlueColor}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="ApplicationBtnIcon">
+        <Setter Property="TextColor" Value="{DynamicResource DefaultLightBlueColor}" />
+        <Setter Property="FontFamily" Value="SegMDL2" />
+        <Setter Property="Padding" Value="{OnPlatform iOS='2,18,12,0', Android='1,0,2,1', Default='2,17,12,0'}" />
+        <Setter Property="HorizontalOptions"  Value="Center" />
+        <Setter Property="FontSize"  Value="{OnPlatform iOS='25', Android='25', Default='15'}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource DefaultBlueColor}"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="ApplicationIcon">
+        <Setter Property="TextColor" Value="{DynamicResource DefaultLightBlueColor}" />
+        <Setter Property="FontFamily" Value="SegMDL2" />
+        <Setter Property="Padding" Value="{OnPlatform iOS='2,18,12,0', Android='2,15,12,0', Default='2,17,12,0'}" />
+        <Setter Property="HorizontalOptions"  Value="Center" />
+        <Setter Property="FontSize"  Value="{OnPlatform iOS='25', Android='25', Default='15'}" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="NavigationTextLabel">
+        <Setter Property="TextColor" Value="{DynamicResource DefaultNavigationTextColor}" />
+        <Setter Property="FontFamily" Value="DefaultTextFont" />
+        <Setter Property="Padding" Value="{OnPlatform iOS='2,1,2,0', Android='2,1,2,0', Default='2,1,2,0'}" />
+        <Setter Property="HorizontalOptions"  Value="Center" />
+        <Setter Property="FontSize"  Value="{OnPlatform iOS='10', Android='20', Default='15'}" />
+    </Style>
+    
+    <Style TargetType="Label" x:Key="AppStatusTextLabel">
+        <Setter Property="TextColor" Value="{DynamicResource DefaultNavigationTextColor}" />
+        <Setter Property="FontFamily" Value="DefaultTextFont" />
+        <Setter Property="Padding" Value="{OnPlatform iOS='2,1,2,0', Android='2,1,2,0', Default='2,1,2,0'}" />
+        <Setter Property="HorizontalOptions"  Value="Center" />
+        <Setter Property="FontSize"  Value="{OnPlatform iOS='10', Android='15', Default='15'}" />
+    </Style>
+    <Style TargetType="Label" x:Key="AppStatusCurrentTypeTextLabel">
+        <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+        <Setter Property="FontFamily" Value="DefaultTextFont" />
+        <Setter Property="Padding" Value="{OnPlatform iOS='2,1,2,0', Android='2,1,2,0', Default='2,1,2,0'}" />
+        <Setter Property="HorizontalOptions"  Value="Center" />
+        <Setter Property="FontSize"  Value="{OnPlatform iOS='10', Android='15', Default='15'}" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="NavigationIcon">
+        <Setter Property="TextColor" Value="{DynamicResource DefaultNavigationTextColor}" />
+        <Setter Property="FontFamily" Value="SegMDL2" />
+        <Setter Property="Padding" Value="{OnPlatform iOS='2,15,2,0', Android='2,17,2,0', Default='2,17,2,0'}" />
+        <Setter Property="FontSize" Value="{OnPlatform iOS='35', Android='25', Default='30'}" />
+        <Setter Property="HorizontalOptions"  Value="Center" />
+    </Style>
+
+    <Style TargetType="Button" x:Key="DefaultBlueBtn">
+        <Setter Property="TextColor" Value="{DynamicResource WhiteTextColor}" />
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontSize"  Value="{OnPlatform iOS='10', Android='15', Default='15'}" />
+        <Setter Property="FontFamily" Value="DefaultTextFont" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource DefaultBlueColor}" />
+        <Setter Property="Padding" Value="0,0" />
+    </Style>
+
+    <Style TargetType="Label"  x:Key="FlyOutMenuItemStyle">
+        <Setter Property="FontFamily" Value="DefaultTextFont" />
+        <Setter Property="Padding" Value="{OnPlatform iOS='20,15,12,15', Android='30,12,12,15', Default='2,17,2,0'}" />
+        <Setter Property="FontSize" Value="{OnPlatform iOS='18', Android='18', Default='30'}" />
+        <Setter Property="HeightRequest" Value="52"/>
+        <Setter Property="WidthRequest" Value="230"/>
+    </Style>
+    <Style TargetType="Label" x:Key="DataPlotActionBtnIcon">
+        <Setter Property="TextColor" Value="{DynamicResource DefaultBlueColor}" />
+        <Setter Property="FontFamily" Value="SegMDL2" />       
+        <Setter Property="HorizontalOptions"  Value="Center" />
+        <Setter Property="VerticalOptions"  Value="Center" />
+        <Setter Property="FontSize"  Value="{OnPlatform iOS='25', Android='25', Default='15'}" />
+        <Setter Property="WidthRequest" Value="56"/>
+        <Setter Property="HeightRequest"  Value="60"/>
+        <Setter Property="BackgroundColor"  Value="{DynamicResource BodyBGColor}" />
+    </Style>
+
+    <Style TargetType="HorizontalStackLayout"  x:Key="PlotDataListViewHeader">
+        <Setter Property="HorizontalOptions"  Value="Center" />
+        <Setter Property="VerticalOptions"  Value="Center" />
+        <Setter Property="WidthRequest" Value="56"/>
+        <Setter Property="HeightRequest"  Value="60"/>
+        <Setter Property="BackgroundColor"  Value="{DynamicResource SelectedBlueColor}" />
+    </Style>
+
+    <Style TargetType="Label"  x:Key="PlotDataListViewLabel">
+        <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" />
+        <Setter Property="FontFamily" Value="SegMDL2" />
+        <Setter Property="HorizontalOptions"  Value="Center" />
+        <Setter Property="VerticalOptions"  Value="Center" />
+        <Setter Property="VerticalTextAlignment"  Value="Center" />
+        <Setter Property="HorizontalTextAlignment"  Value="Center" />
+        <Setter Property="FontSize"  Value="{OnPlatform iOS='25', Android='16', Default='12'}" />
+        <Setter Property="HeightRequest"  Value="53"/>
+        <Setter Property="BackgroundColor"  Value="Transparent"/>
+    </Style>
+    <Style TargetType="Label"  x:Key="PlotDataListViewHeaderLabel">
+        <Setter Property="TextColor" Value="{DynamicResource  WhiteTextColor}" />
+        <Setter Property="FontFamily" Value="DefaultTextFont" />
+        <Setter Property="Padding" Value="0,0,0,5"/>
+        <Setter Property="HorizontalOptions"  Value="Center" />
+        <Setter Property="VerticalOptions"  Value="Center" />
+        <Setter Property="VerticalTextAlignment"  Value="Center" />
+        <Setter Property="HorizontalTextAlignment"  Value="Center" />
+        <Setter Property="FontSize"  Value="{OnPlatform iOS='25', Android='16', Default='12'}" />
+        <Setter Property="HeightRequest"  Value="50"/>
+        <Setter Property="BackgroundColor"  Value="Transparent"/>
+    </Style>
+    <!--<Style TargetType="uc:LabelEntryH">
+        <Setter Property="TextColor" Value="{DynamicResource  WhiteTextColor}" />
+        <Setter Property="FontFamily" Value="DefaultTextFont" />
+        <Setter Property="Padding" Value="0,0,0,5"/>
+        <Setter Property="HorizontalOptions"  Value="Center" />
+        <Setter Property="VerticalOptions"  Value="Center" />
+        <Setter Property="VerticalTextAlignment"  Value="Center" />
+        <Setter Property="HorizontalTextAlignment"  Value="Center" />
+        <Setter Property="FontSize"  Value="{OnPlatform iOS='25', Android='16', Default='12'}" />
+        <Setter Property="HeightRequest"  Value="50"/>
+        <Setter Property="BackgroundColor"  Value="Transparent"/>
+    </Style>-->
+
+    <Style TargetType="Label"  x:Key="ListViewContentLabel">
+        <Setter Property="FontFamily" Value="DefaultTextFont" />
+        <Setter Property="Padding" Value="0,0,0,5"/>
+        <Setter Property="HorizontalOptions"  Value="Center" />
+        <Setter Property="VerticalOptions"  Value="Center" />
+        <Setter Property="VerticalTextAlignment"  Value="Center" />
+        <Setter Property="HorizontalTextAlignment"  Value="Center" />
+        <!--<Setter Property="effects:ShadowEffect.HasShadow" Value="True"/>-->
+    </Style>
+
+    <!--<Style TargetType="telerik:TabViewHeaderItem"  x:Key="TabViewItemStyle">
+        <Setter Property="TextColor" Value="{DynamicResource DefaultTextColor}" /> 
+        <Setter Property="FontFamily" Value="SegMDL2" />
+    </Style>-->
+
+</ResourceDictionary>

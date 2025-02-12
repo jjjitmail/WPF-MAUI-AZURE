@@ -1,0 +1,82 @@
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PSTouchExpress.Views.NavigationBar"
+            xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+            xmlns:pages="clr-namespace:PSTouchExpress.Pages"
+            x:Name="MainPage"
+            BackgroundColor="White">
+    
+    <!--xmlns:telerikInput="clr-namespace:Telerik.XamarinForms.Input;assembly=Telerik.Maui.Controls.Compatibility"-->
+    <FlexLayout >
+        <FlexLayout.Shadow>
+            <Shadow Brush="Black"
+					Offset="{OnPlatform iOS='-1,-10', Android='-1,-10', Default='-1,-8'}"
+					Radius="{OnPlatform Android='20', iOS='3',  Default='10'}"
+					Opacity="{OnPlatform Android='0.8', iOS='0.2', Default='0.2'}" />
+        </FlexLayout.Shadow>
+        <Grid BackgroundColor="{DynamicResource DefaultBlueColor}"
+                    HorizontalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".33*" />
+                <ColumnDefinition Width=".34*" />
+                <ColumnDefinition Width=".33*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" x:Name="ConnectionLabel" BackgroundColor="{Binding ConnectionBtnBgColor, Mode=TwoWay}">
+                    <Grid ColumnDefinitions="*" RowDefinitions="*">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TagConnectionBtnCommand}" 
+                                                  CommandParameter="{Binding FlyOutMenuViewPage}" />
+                        </Grid.GestureRecognizers>
+                    <StackLayout WidthRequest="{Binding AppWidth3}">
+                        <Label x:Name="lblConnectionsIcon" Style="{StaticResource NavigationIcon}"
+                               TextColor="{Binding ConnectionsPageModel.ConnectionsTextColor, FallbackValue={x:Static Colors.White}}" 
+                               Text="{Binding ConnectionsPageModel.ConnectionsIcon}" />
+                        <Label x:Name="lblConnectionsText" Style="{StaticResource NavigationTextLabel}" 
+                               FontAttributes="{Binding ConnectionsPageModel.ConnectionsFontAttributes}" 
+                               TextColor="{Binding ConnectionsPageModel.ConnectionsTextColor, FallbackValue={x:Static Colors.White}}" 
+                               Text="{Binding ConnectionsPageModel.ConnectionsText}" />
+                    </StackLayout>
+                       
+                    </Grid>
+            </Grid>
+
+            <Grid Grid.Column="1" x:Name="InstrumentLabel" BackgroundColor="{Binding InstrumentBtnBgColor, Mode=TwoWay}">
+                <Grid ColumnDefinitions="*" RowDefinitions="*">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding TagInstrumentBtnCommand}" />
+                    </Grid.GestureRecognizers>
+                    <StackLayout WidthRequest="{Binding AppWidth3}">
+                        <Label x:Name="lblInstrumentIcon" Style="{StaticResource NavigationIcon}"
+                               TextColor="{Binding InstrumentPageModel.InstrumentTextColor, FallbackValue={x:Static Colors.White}}" 
+                               Text="{Binding InstrumentPageModel.InstrumentIcon}" />
+                        <Label x:Name="lblInstrumentText" Style="{StaticResource NavigationTextLabel}" 
+                               FontAttributes="{Binding InstrumentPageModel.InstrumentFontAttributes}" 
+                               TextColor="{Binding InstrumentPageModel.InstrumentTextColor, FallbackValue={x:Static Colors.White}}" 
+                               Text="{Binding InstrumentPageModel.InstrumentText}" />
+                    </StackLayout>
+
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Column="2" x:Name="DataLabel" BackgroundColor="{Binding DataBtnBgColor, Mode=TwoWay}">
+                <Grid ColumnDefinitions="*" RowDefinitions="*">
+                    <Grid.GestureRecognizers>                        
+                        <TapGestureRecognizer Command="{Binding TagDataBtnCommand}" />
+                    </Grid.GestureRecognizers>
+                    <StackLayout WidthRequest="{Binding AppWidth3}">
+                        <Label x:Name="lblDataIcon" Style="{StaticResource NavigationIcon}"                                 
+                               TextColor="{Binding Path=DataPageModel.DataTextColor, FallbackValue={x:Static Colors.White}}"
+                               Text="{Binding Path=DataPageModel.DataIcon}" />
+                        <Label x:Name="lblDataText" Style="{StaticResource NavigationTextLabel}"
+                               FontAttributes="{Binding Path=DataPageModel.DataFontAttributes, Mode=TwoWay}" 
+                               TextColor="{Binding Path=DataPageModel.DataTextColor, FallbackValue={x:Static Colors.Yellow}}" 
+                               Text="{Binding Path=DataPageModel.DataText}" />
+                    </StackLayout>
+
+                </Grid>
+            </Grid>
+        </Grid>
+
+    </FlexLayout>
+</ContentView>

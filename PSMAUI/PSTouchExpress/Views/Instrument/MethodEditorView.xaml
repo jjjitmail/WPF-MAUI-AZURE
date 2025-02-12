@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PSTouchExpress.Views.MethodEditorView"
+             xmlns:Graphics="clr-namespace:NNN.Core.Presentation.MAUI.Graphics;assembly=NNN.Core.Presentation.MAUI"
+             xmlns:Controls="clr-namespace:NNN.Core.Presentation.MAUI.Controls;assembly=NNN.Core.Presentation.MAUI"
+             xmlns:UserControls="clr-namespace:NNN.Core.Presentation.MAUI.UserControls;assembly=NNN.Core.Presentation.MAUI"
+             xmlns:DataTemplates="clr-namespace:PSTouchExpress.DataTemplates"
+             x:Name="MethodEditorViewContent">
+    <ContentView.Resources>
+            <DataTemplate x:Key="TechniqueViewDataTemplate">
+            <UserControls:TechniqueComboBox  psItemHeight="30" psBorderColor="#dbdbdb"
+                                 psItemsSource="{Binding TechniqueItemSources}" />
+            </DataTemplate>
+            <DataTemplate x:Key="RangeViewDataTemplate">
+                <UserControls:RangeComboBox />
+            </DataTemplate>
+        <DataTemplates:PSComboBoxDataTemplate x:Key="PSComboBoxDataTemplateSelector"
+                                               TechniqueComboBoxTemplate="{StaticResource TechniqueViewDataTemplate}"
+                                               RangeComboBoxTemplate="{StaticResource RangeViewDataTemplate}"/>
+    </ContentView.Resources>
+        <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="25"/>
+        </Grid.ColumnDefinitions>
+
+        <UserControls:TechniqueComboBox  psItemHeight="30" psBorderColor="#dbdbdb"
+                                 psItemsSource="{Binding TechniqueItemSources}" />
+            
+        <!--<CollectionView Grid.Column="0" x:Name="ComboBoxCollectioView" 
+            ItemTemplate="{StaticResource PSComboBoxDataTemplateSelector}" />-->
+
+        <!--<UserControls:PSComboBox psItemHeight="30" psBorderColor="#dbdbdb"
+                                 psItemsSource="{Binding TechniqueItemSources}" />-->
+
+        <Label Grid.Column="1"  Text="{Binding HelpIcon}" FontAttributes="Bold" FontSize="16" Margin="8,18,0,0"
+               FontFamily="SegMDL2" TextColor="{StaticResource DefaultBlueColor}" />
+    </Grid>
+</ContentView>

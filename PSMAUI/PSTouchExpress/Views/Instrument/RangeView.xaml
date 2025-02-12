@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PSTouchExpress.Views.RangeView"
+             xmlns:Graphics="clr-namespace:NNN.Core.Presentation.MAUI.Graphics;assembly=NNN.Core.Presentation.MAUI"
+             xmlns:Controls="clr-namespace:NNN.Core.Presentation.MAUI.Controls;assembly=NNN.Core.Presentation.MAUI"
+             xmlns:uc="clr-namespace:NNN.Core.Presentation.MAUI.UserControls;assembly=NNN.Core.Presentation.MAUI"
+             x:Name="RangeViewContent">
+    <StackLayout>
+        <StackLayout>
+            <Label Text="i Range" Margin="0,7,0,0" />
+        </StackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".10*" />
+                <ColumnDefinition Width=".30*" />
+                <ColumnDefinition Width=".30*" />
+                <ColumnDefinition Width=".30*" />
+            </Grid.ColumnDefinitions>
+            
+            <HorizontalStackLayout Grid.Column="0">
+                <!--<Label Text="{Binding Range_StartIcon}" FontFamily="SegMDL2" Margin="35,10,0,0" />-->
+                <uc:RangeComboBox psItemsSource="{Binding RangeItemSources}" x:Name="Range_StartIconComboBox"
+                                  psSelectedItem="{Binding MinRangeSelected}" psHeight="200" 
+                                  UnitLabel="{Binding Range_StartIcon}"
+                                  VerticalOptions="Center" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Grid.Column="1">
+                <!--<Label Text="{Binding Range_MinIcon}"  FontFamily="SegMDL2" Margin="5,10,0,0" />-->
+                <uc:RangeComboBox psItemsSource="{Binding RangeItemSources}" x:Name="Range_MinIconComboBox"
+                                  psSelectedItem="{Binding StartRangeSelected}" psHeight="200" 
+                                  UnitLabel="{Binding Range_MinIcon}"
+                                  VerticalOptions="Center" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Grid.Column="2">
+                <!--<Label Text="{Binding Range_MaxIcon}"  FontFamily="SegMDL2" Margin="5,10,0,0" />-->
+                <uc:RangeComboBox psItemsSource="{Binding RangeItemSources}" x:Name="Range_MaxIconComboBox"
+                                  psSelectedItem="{Binding MaxRangeSelected}"  psHeight="200" 
+                                  UnitLabel="{Binding Range_MaxIcon}"
+                                  VerticalOptions="Center" />
+            </HorizontalStackLayout>
+        </Grid>
+    </StackLayout>
+        
+</ContentView>

@@ -1,0 +1,123 @@
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="PSTouchExpress.Views.AppBar"
+            xmlns:app="clr-namespace:PSTouchExpress.Resources.Styles"
+            xmlns:views="clr-namespace:PSTouchExpress.Views"
+            xmlns:behaviors="clr-namespace:NNN.Core.Presentation.MAUI.Behaviors;assembly=NNN.Core.Presentation.MAUI"
+             xmlns:converters="clr-namespace:NNN.Core.Presentation.MAUI.Converters;assembly=NNN.Core.Presentation.MAUI"
+            xmlns:Graphics="clr-namespace:NNN.Core.Presentation.MAUI.Graphics;assembly=NNN.Core.Presentation.MAUI"
+            BackgroundColor="{DynamicResource DefaultBlueColor}">
+    <!--<GridLayout.GestureRecognizers>
+        <TapGestureRecognizer Command="{Binding TagOnContentPageCommand}" />
+    </GridLayout.GestureRecognizers>-->
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:PotentialBackgroundColorConverter x:Key="PotentialBackgroundColorConverter" />
+            <converters:CurrentBackgroundColorConverter x:Key="CurrentBackgroundColorConverter"/>
+            <converters:CurrentStatusTextColorConverter x:Key="CurrentStatusTextColorConverter"/>
+            <converters:PotentialStatusTextColorConverter x:Key="PotentialStatusTextColorConverter"/>
+            <converters:NoiseStatusColorConverter x:Key="NoiseStatusColorConverter"/>
+            <Graphics:NoiseStatusSeparator x:Key="NoiseStatusSeparator"/>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Shadow>
+        <Shadow Brush="Black" 
+					Offset="{OnPlatform iOS='0,10', Android='1,10', Default='1,5'}"
+					Radius="{OnPlatform iOS='3', Android='7', Default='7'}"
+					Opacity="{OnPlatform iOS='0.2', Android='0.3', Default='0.3'}" />
+    </ContentView.Shadow>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55" />
+        </Grid.RowDefinitions>
+
+        <StackLayout HeightRequest="55" x:Name="AppBarStatusStackLayout" Grid.Row="0" BackgroundColor="{DynamicResource DefaultBlueColor}">
+            <HorizontalStackLayout>
+                <HorizontalStackLayout Margin="5,0,0,0">
+                <Label Text="{Binding AnimatedSwapIcon}" Margin="0,0,0,26" Style="{StaticResource ApplicationIcon}"/>
+                    <Label Text="{Binding InstrumentTitle, Mode=TwoWay}"  Style="{StaticResource NavigationTextLabel}" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <StackLayout>
+                    <VerticalStackLayout>
+                        <HorizontalStackLayout HeightRequest="30" Margin="2,0,0,0">
+                            <HorizontalStackLayout BackgroundColor="{Binding PotentialStatusType, Converter={StaticResource PotentialBackgroundColorConverter}}" Margin="2,3,0,3">
+                                <Label Text="{Binding PotentialType, Mode=TwoWay}" Style="{StaticResource AppStatusTextLabel}" 
+                                       TextColor="{Binding PotentialStatusType, Converter={StaticResource PotentialStatusTextColorConverter}}"/>
+                                <Label Text="{Binding PotentialValue, Mode=TwoWay}" Style="{StaticResource AppStatusTextLabel}" 
+                                       TextColor="{Binding PotentialStatusType, Converter={StaticResource PotentialStatusTextColorConverter}}"/>
+                                <Label Text="{Binding PotentialLabel, Mode=TwoWay}" Style="{StaticResource AppStatusTextLabel}" Margin="0,0,0,0" 
+                                       TextColor="{Binding PotentialStatusType, Converter={StaticResource PotentialStatusTextColorConverter}}"/>
+                            </HorizontalStackLayout>
+                           
+                            <HorizontalStackLayout BackgroundColor="{Binding CurrentStatusType, Converter={StaticResource CurrentBackgroundColorConverter}}"  Margin="8,3,0,3">
+                                <Label Text="{Binding CurrentType, Mode=TwoWay}" Style="{StaticResource AppStatusCurrentTypeTextLabel}"
+                                       TextColor="{Binding CurrentStatusType, Converter={StaticResource CurrentStatusTextColorConverter}}"  />
+                                <Label Text="{Binding CurrentValue, Mode=TwoWay}" Style="{StaticResource AppStatusCurrentTypeTextLabel}"
+                                       TextColor="{Binding CurrentStatusType, Converter={StaticResource CurrentStatusTextColorConverter}}"  />
+                                <Label Text="{Binding CurrentLabel, Mode=TwoWay}" Style="{StaticResource AppStatusCurrentTypeTextLabel}"
+                                       TextColor="{Binding CurrentStatusType, Converter={StaticResource CurrentStatusTextColorConverter}}"  Margin="0,0,0,0"/>
+                            </HorizontalStackLayout>
+                            
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout>
+                            <Label Text="Noise:"  Style="{StaticResource AppStatusTextLabel}"/>
+                        <Grid HeightRequest="20" WidthRequest="126">
+                                <Grid.RowDefinitions/>
+                            <BoxView HeightRequest="20" WidthRequest="124" Opacity="1.0" Grid.Row="0" >
+                                    <BoxView.Background>
+                                        <LinearGradientBrush EndPoint="1,0">
+                                            <GradientStop Color="LimeGreen" Offset="0.0" />
+                                            <GradientStop Color="Yellow" Offset="0.5" />
+                                            <GradientStop Color="Red" Offset="1.0" />
+                                        </LinearGradientBrush>
+                                    </BoxView.Background>
+                                </BoxView>
+
+                                <BoxView HeightRequest="20" WidthRequest="{Binding NoiseProgress, FallbackValue=126}" HorizontalOptions="End"
+                                         BackgroundColor="{DynamicResource DarkGrayColor}"  Grid.Row="0"/>
+                            <GraphicsView Drawable="{StaticResource NoiseStatusSeparator}" HeightRequest="20" WidthRequest="126" Grid.Row="0" />
+                        </Grid>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </StackLayout>
+            </HorizontalStackLayout>
+        </StackLayout>
+
+        <StackLayout HeightRequest="55" Grid.Row="0">
+            <Grid BackgroundColor="{DynamicResource DefaultBlueColor}"
+                HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0" >
+                    <Image Source="logo.png" MaximumHeightRequest="53" 
+                        HeightRequest="53" Margin="-60,2,0,0" />
+                </StackLayout>
+                <StackLayout Grid.Column="1" >
+                    <Button Text="{Binding CloudIcon}" HeightRequest="55" 
+                                Command="{Binding AppCloudCommand}" CommandParameter="{x:Reference AppBarStatusStackLayout}"
+                                x:Name="BtnCloud" Style="{StaticResource ApplicationBtnIcon}" />
+                </StackLayout>
+                <StackLayout Grid.Column="2" >
+                    <Button Text="{Binding StartIcon}" HeightRequest="55"
+                                Command="{Binding AppStartCommand}"
+                                x:Name="BtnStart" Style="{StaticResource ApplicationBtnIcon}" />
+                </StackLayout>
+                <StackLayout Grid.Column="3" BackgroundColor="{Binding MoreTaggedBackgroundColor}" HorizontalOptions="End" >
+                    <Button Text="{Binding MoreIconBtn}" HeightRequest="55" 
+                                x:Name="BtnMore" Style="{StaticResource ApplicationBtnIcon}" >
+                        <Button.Behaviors>
+                            <behaviors:EventHandlerBehavior EventName="Clicked" >
+                                <behaviors:FlyOutMenuTranslateAction />
+                            </behaviors:EventHandlerBehavior>
+                        </Button.Behaviors>
+                    </Button>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+
+    </Grid>
+</ContentView>

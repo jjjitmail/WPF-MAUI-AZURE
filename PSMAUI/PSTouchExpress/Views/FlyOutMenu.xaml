@@ -1,0 +1,72 @@
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"            
+            x:Class="PSTouchExpress.Views.FlyOutMenu" 
+            xmlns:behaviors="clr-namespace:NNN.Core.Presentation.MAUI.Behaviors;assembly=NNN.Core.Presentation.MAUI"
+            xmlns:converters="clr-namespace:NNN.Core.Presentation.MAUI.Converters;assembly=NNN.Core.Presentation.MAUI"
+            x:Name="FlyOutMenuGridLayout"
+            WidthRequest="{Binding FlyOutMenuWidth}"  Margin="{Binding FlyOutMenuMargin}" HeightRequest="700" >
+            <!--WidthRequest="230"  Margin="410, 0,20,10" HeightRequest="700" >-->
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+            <converters:FlyOutMenuItemBgColorConverter x:Key="FlyOutMenuItemBgColorConverter"/>
+            <converters:FlyOutMenuItemTextColorConverter x:Key="FlyOutMenuItemTextColorConverter"/>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <FlexLayout BackgroundColor="{DynamicResource FlyOutMenuBgColor}" Grid.Row="0">
+        <FlexLayout.Shadow>
+            <Shadow Brush="Black"
+					Offset="{OnPlatform iOS='0,10', Android='1,10', Default='1,5'}"
+					Radius="{OnPlatform iOS='3', Android='7', Default='7'}"
+					Opacity="{OnPlatform iOS='0.2', Android='0.3', Default='0.3'}" />
+        </FlexLayout.Shadow>
+
+        <Grid Padding="0,0,5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+           
+            <ListView x:Name="FlyOutMenuItemList" RowHeight="53" 
+                      SeparatorColor="#cccccc" SeparatorVisibility="None"
+                      ItemsSource="{Binding FlyOutMenuItemSources}" 
+                      SelectedItem="{Binding SelectedFlyOutMenuItem}"
+                      Grid.Column="0">
+
+                <!--<ListView.Behaviors>
+                    <behaviours:ListViewSelectedItemBehavior  
+                        Command="{Binding FlyOutMenuItemCommand}"
+                        Converter="{StaticResource SelectedItemConverter}"/>
+                </ListView.Behaviors>-->
+
+                <ListView.Behaviors>
+                    <behaviors:EventHandlerBehavior EventName="ItemSelected">
+                        <behaviors:InvokeCommandAction 
+                            Command="{Binding FlyOutMenuItemCommand}"
+                            Converter="{StaticResource SelectedItemConverter}" />
+                    </behaviors:EventHandlerBehavior>
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Margin="0" Padding="0,0,0,0"
+                                BackgroundColor="{Binding FlyOutMenuItemSelected, Converter={StaticResource FlyOutMenuItemBgColorConverter}}" >
+                                <Label Text="{Binding Name}" 
+                                       TextColor="{Binding FlyOutMenuItemSelected, Converter={StaticResource FlyOutMenuItemTextColorConverter}}"
+                                       Style="{StaticResource FlyOutMenuItemStyle}" >
+                                </Label>
+                                <BoxView HeightRequest=".5" BackgroundColor="{DynamicResource SeparatorColor}"/>
+                            </StackLayout>                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+           
+        </Grid>
+    </FlexLayout>
+    
+</ContentView>
+    

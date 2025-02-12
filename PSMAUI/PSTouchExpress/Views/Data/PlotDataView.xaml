@@ -1,0 +1,109 @@
+<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="PSTouchExpress.Views.PlotDataView" 
+            xmlns:behaviors="clr-namespace:NNN.Core.Presentation.MAUI.Behaviors;assembly=NNN.Core.Presentation.MAUI"
+            xmlns:converters="clr-namespace:NNN.Core.Presentation.MAUI.Converters;assembly=NNN.Core.Presentation.MAUI"  
+            HeightRequest="700" TranslationY="{Binding PlotItemListStartY}"
+            x:Name="PlotDataViewLayout" >
+
+    <Grid.Resources>
+        <ResourceDictionary>
+            <converters:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+            <converters:FlyOutMenuItemBgColorConverter x:Key="FlyOutMenuItemBgColorConverter"/>
+            <converters:FlyOutMenuItemTextColorConverter x:Key="FlyOutMenuItemTextColorConverter"/>
+        </ResourceDictionary>
+    </Grid.Resources>
+    <FlexLayout BackgroundColor="{DynamicResource FlyOutMenuBgColor}" Grid.Row="0">
+        <FlexLayout.Shadow>
+            <Shadow Brush="Black"
+					Offset="{OnPlatform iOS='-1,-10', Android='-1,-10', Default='-1,-8'}"
+					Radius="{OnPlatform Android='20', iOS='3',  Default='10'}"
+					Opacity="{OnPlatform Android='0.8', iOS='0.2', Default='0.2'}" />
+        </FlexLayout.Shadow>
+
+        <Grid Padding="0,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <ListView x:Name="PlotItemList" RowHeight="53"
+                        SeparatorColor="{DynamicResource SeparatorColor}" 
+                        SeparatorVisibility="Default"
+                        BackgroundColor="{DynamicResource FlyOutMenuBgColor}"
+                        ItemsSource="{Binding PlotItemSources}" >
+                <ListView.Header>
+                    <Grid BackgroundColor="{DynamicResource SelectedBlueColor}" HeightRequest="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".13*"/>
+                            <ColumnDefinition Width=".17*"/>
+                            <ColumnDefinition Width=".30*"/>
+                            <ColumnDefinition Width=".25*"/>
+                            <ColumnDefinition Width=".15*"/>
+                        </Grid.ColumnDefinitions>                    
+                    
+                        <StackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" >
+                            <CheckBox Margin="8,0,0,10" />
+                        </StackLayout>
+                        <StackLayout Grid.Column="1" >
+                            <Label Text="Title" Style="{StaticResource PlotDataListViewHeaderLabel}" />
+                        </StackLayout>
+                        <StackLayout Grid.Column="2" >
+                            <Label Text="Date/Time" Style="{StaticResource PlotDataListViewHeaderLabel}" />
+                        </StackLayout>
+                        <StackLayout Grid.Column="3" >
+                            <Label Text="Pb [mol/L]" Style="{StaticResource PlotDataListViewHeaderLabel}" />
+                        </StackLayout>
+                        
+                        <Button Text="{Binding ExpandIconBtn}" Grid.Column="4" 
+                                Style="{StaticResource DataPlotActionBtnIcon}"
+                                BackgroundColor="{DynamicResource SelectedBlueColor}"
+                                TextColor="{DynamicResource WhiteTextColor}" 
+                                Padding="0,0,0,10"
+                                Command="{Binding ExplandPlotDataViewCommand}" 
+                                CommandParameter="{x:Reference PlotDataViewLayout}" >                            
+                        </Button>
+                    </Grid>
+                   
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".13*"/>
+                                    <ColumnDefinition Width=".17*"/>
+                                    <ColumnDefinition Width=".30*"/>
+                                    <ColumnDefinition Width=".25*"/>
+                                    <ColumnDefinition Width=".15*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" >
+                                    <CheckBox Margin="8,0,0,0" />
+                                </StackLayout>
+                                <StackLayout Grid.Column="1" >
+                                    <Label Text="{Binding Title}" Style="{StaticResource PlotDataListViewLabel}" />
+                                </StackLayout>
+                                <StackLayout Grid.Column="2" >
+                                    <Label Text="{Binding DateTime}" Style="{StaticResource PlotDataListViewLabel}" />
+                                </StackLayout>
+                                <StackLayout Grid.Column="3" >
+                                    <Label  Text="{Binding Pb}" Style="{StaticResource PlotDataListViewLabel}" />
+                                </StackLayout>
+                                <StackLayout Grid.Column="4" VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Label Text="{Binding CloseIconBtn}"  FontSize="24" FontFamily="SegMDL2" 
+                                       HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                                </StackLayout>                                    
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+    </FlexLayout>
+    
+</Grid>   

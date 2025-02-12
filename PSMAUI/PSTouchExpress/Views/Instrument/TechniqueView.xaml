@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Graphics="clr-namespace:NNN.Core.Presentation.MAUI.Graphics;assembly=NNN.Core.Presentation.MAUI"
+             xmlns:Controls="clr-namespace:NNN.Core.Presentation.MAUI.Controls;assembly=NNN.Core.Presentation.MAUI"
+             xmlns:uc="clr-namespace:NNN.Core.Presentation.MAUI.UserControls;assembly=NNN.Core.Presentation.MAUI"
+             x:Class="PSTouchExpress.Views.TechniqueView" x:Name="TechniqueComboView" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="25"/>
+        </Grid.ColumnDefinitions>
+
+        <uc:TechniqueComboBox psItemHeight="30" psBorderColor="#dbdbdb"
+                            psSelectedItem="{Binding SelectedMethod}"
+                            psItemsSource="{Binding TechniqueItemSources}" />
+
+        <Label Grid.Column="1"  Text="{Binding HelpIcon}" FontAttributes="Bold" FontSize="28" Margin="0,10,2,0"
+               FontFamily="SegMDL2" TextColor="{StaticResource DefaultBlueColor}" />
+    </Grid>
+</ContentView>

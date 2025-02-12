@@ -1,0 +1,52 @@
+﻿<ResourceDictionary x:Class="PSTouchExpress.Resources.Styles.DefaultTheme"
+                    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                    xmlns:app="clr-namespace:PSTouchExpress.Resources.Styles"
+                    xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls">
+    <Color x:Key="DefaultBlueColor">#0090C9</Color>
+    <Color x:Key="SelectedBlueColor">#15425c</Color>
+    <Color x:Key="WhiteTextColor">White</Color>
+
+    <FontImageSource
+                x:Key="ConnectionsIcon"
+                FontFamily="SegMDL2"
+                Glyph="{x:Static app:IconFontSegMDL2.Connections}"
+                Color="{StaticResource WhiteTextColor}"
+                Size="16"/>    
+    
+
+    <Style TargetType="Label" x:Key="ApplicationIcon">
+        <Setter Property="TextColor" Value="{DynamicResource WhiteTextColor}" />
+        <Setter Property="FontFamily" Value="SegMDL2" />
+        <Setter Property="Padding" Value="{OnPlatform iOS='2,9,12,0', Android='2,17,12,0', Default='2,17,12,0'}" />
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="HorizontalOptions"  Value="Center" />
+        <Setter Property="FontSize"  Value="{OnPlatform iOS='25', Android='25', Default='15'}" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="NavigationTextLabel">
+        <Setter Property="TextColor" Value="{DynamicResource WhiteTextColor}" />
+        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="Padding" Value="{OnPlatform iOS='2,1,2,0', Android='2,1,2,0', Default='2,1,2,0'}" />
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="HorizontalOptions"  Value="Center" />
+        <Setter Property="FontSize"  Value="{OnPlatform iOS='10', Android='15', Default='15'}" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="NavigationIcon">
+        <Setter Property="TextColor" Value="{DynamicResource WhiteTextColor}" />
+        <Setter Property="FontFamily" Value="SegMDL2" />
+        <Setter Property="Padding" Value="{OnPlatform iOS='2,10,2,0', Android='2,17,2,0', Default='2,17,2,0'}" />
+        <Setter Property="FontSize" Value="{OnPlatform iOS='25', Android='25', Default='30'}" />
+        <Setter Property="HorizontalOptions"  Value="Center" />
+    </Style>
+
+    <Style TargetType="Button" x:Key="DefaultBlueBtn">
+        <Setter Property="TextColor" Value="{DynamicResource WhiteTextColor}" />
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontSize"  Value="{OnPlatform iOS='10', Android='15', Default='15'}" />
+        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource DefaultBlueColor}" />
+        <Setter Property="Padding" Value="0,0" />
+    </Style>
+</ResourceDictionary>
