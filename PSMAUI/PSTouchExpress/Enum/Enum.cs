@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NN.Core.Presentation.MAUI
+namespace NNN.Core.Presentation.MAUI
 {
     public enum ConnectionType
     {
