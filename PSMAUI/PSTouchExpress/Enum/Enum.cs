@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PalmSens.Core.Presentation.MAUI
+namespace NN.Core.Presentation.MAUI
 {
     public enum ConnectionType
     {
