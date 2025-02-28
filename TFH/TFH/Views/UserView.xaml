@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sf="clr-namespace:Syncfusion.Maui.Toolkit.TextInputLayout;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:button="clr-namespace:Syncfusion.Maui.Toolkit.Buttons;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:local="clr-namespace:TFH.Behavior"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:converter="clr-namespace:TFH.Converters"
+             x:Class="TFH.Views.UserView"
+             Title="{Binding FirstName}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:EllipseFillColorConverter x:Key="EllipseFillColorConverter"/>
+            <converter:BtnEnableConverter x:Key="BtnEnableConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <VerticalStackLayout>
+        
+        <sf:SfTextInputLayout Hint="First Name">
+            <Entry Text="{Binding FirstName}" />
+        </sf:SfTextInputLayout>
+        
+        <sf:SfTextInputLayout Hint="Last Name">
+            <Entry Text="{Binding LastName}" />
+        </sf:SfTextInputLayout>
+
+        <sf:SfTextInputLayout Hint="Employee Type">
+            <Picker ItemsSource="{Binding EmployeeTypes}" 
+                    ItemDisplayBinding="{Binding .}"
+                    SelectedItem="{Binding SelectedEmployeeType, Mode=TwoWay}" 
+                    Title="Employee Types" />            
+        </sf:SfTextInputLayout>
+
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Image x:Name="PhotoField" Source="{Binding PhotoSource}" HeightRequest="100" >
+                <!--<Image.Behaviors>                    
+                    <local:ImageValidationBehavior/>
+                </Image.Behaviors>-->
+            </Image>
+            <Ellipse Fill="{Binding Online, Converter={StaticResource EllipseFillColorConverter}}"
+                 WidthRequest="16"
+                 HeightRequest="16"
+                 HorizontalOptions="Start" VerticalOptions="Start" />
+            <button:SfButton x:Name="BtnUpload" Text="Choose a photo" Command="{Binding ChoosePhotoCommand}" />
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <button:SfButton x:Name="BackToMain" Text="Back" Command="{Binding NavigateToMainCommand}" />
+            <button:SfButton x:Name="clearbutton" Text="Clear" Command="{Binding ClearCommand}" Background = "{StaticResource Blue}" />
+            <button:SfButton x:Name="savebutton" Text="Save" IsEnabled="{Binding Online, Converter={StaticResource BtnEnableConverter}}"
+                             Command="{Binding SaveCommand}" Background = "{StaticResource Green}" />
+            <button:SfButton x:Name="resetbutton" Text="Reset" Command="{Binding ResetCommand}" Background = "{StaticResource Red}"  />
+        </HorizontalStackLayout >
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Label Text="{Binding ResultMessage}" />
+        </HorizontalStackLayout>
+
+    </VerticalStackLayout>    
+
+</ContentPage>
